@@ -308,16 +308,22 @@ const Index = () => {
       <Section id="about" eyebrow="// О кружке" title="Учимся, создавая">
         <div className="grid md:grid-cols-3 gap-6">
           {[
-            { icon: 'Lightbulb', title: 'Практика с первого дня', desc: 'Никакой скучной теории — сразу собираем, паяем и программируем настоящие устройства.' },
-            { icon: 'Users', title: 'Малые группы', desc: 'До 8 человек в группе. Каждый ученик под вниманием наставника.' },
-            { icon: 'Trophy', title: 'Хакатоны и конкурсы', desc: 'Участвуем в олимпиадах и соревнованиях по робототехнике и IT.' },
+            { icon: 'Lightbulb', title: 'Практика с первого дня', desc: 'Никакой скучной теории — сразу собираем, паяем и программируем настоящие устройства.', img: 'https://cdn.poehali.dev/projects/f9f7dc38-52c4-41d5-9c9f-197b14c58636/files/8b06bdbd-78fd-47c0-8b28-e22e84fbeebd.jpg' },
+            { icon: 'Users', title: 'Малые группы', desc: 'До 8 человек в группе. Каждый ученик под вниманием наставника.', img: 'https://cdn.poehali.dev/projects/f9f7dc38-52c4-41d5-9c9f-197b14c58636/files/aceddc21-4bfb-47ab-880e-7ec7ece3e961.jpg' },
+            { icon: 'Trophy', title: 'Хакатоны и конкурсы', desc: 'Участвуем в олимпиадах и соревнованиях по робототехнике и IT.', img: 'https://cdn.poehali.dev/projects/f9f7dc38-52c4-41d5-9c9f-197b14c58636/files/7af25b54-07d9-4a77-95c2-b52e8de56ae2.jpg' },
           ].map((c, i) => (
-            <div key={c.title} className="glass rounded-2xl p-7 hover:-translate-y-1 hover:box-glow transition-all duration-300" style={{ animationDelay: `${i * 0.1}s` }}>
-              <div className="w-12 h-12 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center mb-5">
-                <Icon name={c.icon} size={24} className="text-primary" />
+            <div key={c.title} className="group glass rounded-2xl overflow-hidden hover:-translate-y-1 hover:box-glow transition-all duration-300" style={{ animationDelay: `${i * 0.1}s` }}>
+              <div className="relative h-44 overflow-hidden">
+                <img src={c.img} alt={c.title} className="absolute inset-0 w-full h-full object-cover opacity-65 group-hover:opacity-95 group-hover:scale-105 transition-all duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
+                <div className="absolute top-4 left-4 w-11 h-11 rounded-xl glass border border-primary/40 flex items-center justify-center group-hover:box-glow transition-all">
+                  <Icon name={c.icon} size={22} className="text-primary" />
+                </div>
               </div>
-              <h3 className="font-display text-xl font-semibold mb-2">{c.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">{c.desc}</p>
+              <div className="p-6">
+                <h3 className="font-display text-xl font-semibold mb-2">{c.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{c.desc}</p>
+              </div>
             </div>
           ))}
         </div>
