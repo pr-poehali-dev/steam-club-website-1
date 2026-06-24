@@ -60,9 +60,9 @@ const SCHEDULE = [
 ];
 
 const NEWS = [
-  { date: '18 июня', title: 'Победа на городском хакатоне', desc: 'Наша команда заняла 1 место с проектом умной теплицы.', tag: 'Достижения' },
-  { date: '05 июня', title: 'Новый 3D-принтер в лаборатории', desc: 'Установили высокоточный принтер для сложных моделей.', tag: 'Оборудование' },
-  { date: '22 мая', title: 'Открыт набор на летнюю смену', desc: 'Интенсив по робототехнике и программированию весь июль.', tag: 'Набор' },
+  { date: '18 июня', title: 'Победа на городском хакатоне', desc: 'Наша команда заняла 1 место с проектом умной теплицы.', tag: 'Достижения', img: 'https://cdn.poehali.dev/projects/f9f7dc38-52c4-41d5-9c9f-197b14c58636/files/1e3c5b0d-c175-42cb-9a93-8e0d2c46bf73.jpg' },
+  { date: '05 июня', title: 'Новый 3D-принтер в лаборатории', desc: 'Установили высокоточный принтер для сложных моделей.', tag: 'Оборудование', img: 'https://cdn.poehali.dev/projects/f9f7dc38-52c4-41d5-9c9f-197b14c58636/files/5ef6e741-d4f3-45d1-816c-63a03afa1731.jpg' },
+  { date: '22 мая', title: 'Открыт набор на летнюю смену', desc: 'Интенсив по робототехнике и программированию весь июль.', tag: 'Набор', img: 'https://cdn.poehali.dev/projects/f9f7dc38-52c4-41d5-9c9f-197b14c58636/files/2a40456e-75ad-4527-8311-d51210899726.jpg' },
 ];
 
 const GALLERY = [
@@ -403,16 +403,20 @@ const Index = () => {
       <Section id="news" eyebrow="// Новости и события" title="Что нового">
         <div className="grid md:grid-cols-3 gap-5">
           {NEWS.map((n) => (
-            <article key={n.title} className="glass rounded-2xl p-6 hover:-translate-y-1 transition-all duration-300 flex flex-col">
-              <div className="flex items-center justify-between mb-4">
-                <span className="font-mono-tech text-xs px-2.5 py-1 rounded-full bg-primary/10 text-primary border border-primary/30">{n.tag}</span>
-                <span className="font-mono-tech text-xs text-muted-foreground">{n.date}</span>
+            <article key={n.title} className="group glass rounded-2xl overflow-hidden hover:-translate-y-1 transition-all duration-300 flex flex-col">
+              <div className="relative h-44 overflow-hidden shrink-0">
+                <img src={n.img} alt={n.title} className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
+                <span className="absolute top-4 left-4 font-mono-tech text-xs px-2.5 py-1 rounded-full bg-primary/20 text-primary border border-primary/40 backdrop-blur-sm">{n.tag}</span>
+                <span className="absolute top-4 right-4 font-mono-tech text-xs text-foreground glass px-2.5 py-1 rounded-full">{n.date}</span>
               </div>
-              <h3 className="font-display text-xl font-semibold mb-2">{n.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed flex-1">{n.desc}</p>
-              <button className="mt-4 inline-flex items-center gap-1 text-primary text-sm font-medium hover:gap-2 transition-all">
-                Читать <Icon name="ArrowRight" size={16} />
-              </button>
+              <div className="p-6 flex flex-col flex-1">
+                <h3 className="font-display text-xl font-semibold mb-2">{n.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed flex-1">{n.desc}</p>
+                <button className="mt-4 inline-flex items-center gap-1 text-primary text-sm font-medium hover:gap-2 transition-all">
+                  Читать <Icon name="ArrowRight" size={16} />
+                </button>
+              </div>
             </article>
           ))}
         </div>
