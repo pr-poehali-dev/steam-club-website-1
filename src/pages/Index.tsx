@@ -35,12 +35,12 @@ const NAV = [
 ];
 
 const PROGRAMS = [
-  { icon: 'Bot', title: 'Робототехника', desc: 'Сборка и программирование роботов на Arduino и LEGO Mindstorms', level: '8–16 лет', color: 'primary' },
-  { icon: 'Code2', title: 'Программирование', desc: 'Python, Scratch, разработка игр и мобильных приложений', level: '10–17 лет', color: 'secondary' },
-  { icon: 'Box', title: '3D-моделирование', desc: 'Tinkercad, Blender и печать на 3D-принтере', level: '9–16 лет', color: 'accent' },
-  { icon: 'Cpu', title: 'Электроника', desc: 'Микросхемы, пайка, умные устройства и IoT', level: '11–17 лет', color: 'primary' },
-  { icon: 'Rocket', title: 'Инженерия', desc: 'Проектирование, физика, аэрокосмические эксперименты', level: '12–17 лет', color: 'secondary' },
-  { icon: 'Palette', title: 'Цифровое искусство', desc: 'Графика, анимация и креативные технологии', level: '8–15 лет', color: 'accent' },
+  { icon: 'Bot', title: 'Робототехника', desc: 'Сборка и программирование роботов на Arduino и LEGO Mindstorms', level: '8–16 лет', img: 'https://cdn.poehali.dev/projects/f9f7dc38-52c4-41d5-9c9f-197b14c58636/files/9c315842-cc45-41c1-899d-e2759d501a69.jpg' },
+  { icon: 'Code2', title: 'Программирование', desc: 'Python, Scratch, разработка игр и мобильных приложений', level: '10–17 лет', img: 'https://cdn.poehali.dev/projects/f9f7dc38-52c4-41d5-9c9f-197b14c58636/files/7fe837ad-5b01-4db9-abce-f22f6deb93a6.jpg' },
+  { icon: 'Box', title: '3D-моделирование', desc: 'Tinkercad, Blender и печать на 3D-принтере', level: '9–16 лет', img: 'https://cdn.poehali.dev/projects/f9f7dc38-52c4-41d5-9c9f-197b14c58636/files/744987f9-7fc6-44fc-8df1-d93c169034ac.jpg' },
+  { icon: 'Cpu', title: 'Электроника', desc: 'Микросхемы, пайка, умные устройства и IoT', level: '11–17 лет', img: 'https://cdn.poehali.dev/projects/f9f7dc38-52c4-41d5-9c9f-197b14c58636/files/cb679345-5274-483b-baf6-d6429135cdde.jpg' },
+  { icon: 'Rocket', title: 'Инженерия', desc: 'Проектирование, физика, аэрокосмические эксперименты', level: '12–17 лет', img: 'https://cdn.poehali.dev/projects/f9f7dc38-52c4-41d5-9c9f-197b14c58636/files/056e9ea1-5fae-44ec-b835-d460ba95e099.jpg' },
+  { icon: 'Palette', title: 'Цифровое искусство', desc: 'Графика, анимация и креативные технологии', level: '8–15 лет', img: 'https://cdn.poehali.dev/projects/f9f7dc38-52c4-41d5-9c9f-197b14c58636/files/c82dce5a-0093-43ab-8f41-a51567a4192e.jpg' },
 ];
 
 const PROJECTS = [
@@ -327,15 +327,19 @@ const Index = () => {
       <Section id="programs" eyebrow="// Программа обучения" title="6 направлений">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {PROGRAMS.map((p) => (
-            <div key={p.title} className="group glass rounded-2xl p-6 hover:-translate-y-1 hover:border-primary/40 transition-all duration-300">
-              <div className="flex items-start justify-between mb-5">
-                <div className="w-14 h-14 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center group-hover:box-glow transition-all">
-                  <Icon name={p.icon} size={28} className="text-primary" />
+            <div key={p.title} className="group glass rounded-2xl overflow-hidden hover:-translate-y-1 hover:border-primary/40 transition-all duration-300">
+              <div className="relative h-40 overflow-hidden">
+                <img src={p.img} alt={p.title} className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
+                <div className="absolute top-4 left-4 w-12 h-12 rounded-xl glass border border-primary/40 flex items-center justify-center group-hover:box-glow transition-all">
+                  <Icon name={p.icon} size={24} className="text-primary" />
                 </div>
-                <span className="font-mono-tech text-xs px-2.5 py-1 rounded-full border border-border text-muted-foreground">{p.level}</span>
+                <span className="absolute top-4 right-4 font-mono-tech text-xs px-2.5 py-1 rounded-full glass border border-border text-foreground">{p.level}</span>
               </div>
-              <h3 className="font-display text-2xl font-semibold mb-2">{p.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">{p.desc}</p>
+              <div className="p-6 pt-4">
+                <h3 className="font-display text-2xl font-semibold mb-2">{p.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{p.desc}</p>
+              </div>
             </div>
           ))}
         </div>
